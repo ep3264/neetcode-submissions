@@ -1,0 +1,34 @@
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     constructor(val = 0, left = null, right = null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+class Solution {
+    /**
+     * @param {TreeNode} root
+     * @return {TreeNode}
+     */
+    invertTree(root) {
+        if (!root || !root.left && !root.right) {
+            return root;
+        }
+
+        const t = root.left;
+        root.left = root.right;
+        root.right = t;
+
+        if (root.left)
+            this.invertTree(root.left);
+
+        if (root.right)
+            this.invertTree(root.right);
+
+        return root;
+    }
+}
